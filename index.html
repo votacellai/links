@@ -42,7 +42,9 @@
     @media (max-width: 768px){
       body{
         background-image: linear-gradient(120deg, rgba(2,8,23,0.9), rgba(2,6,23,0.5)), url('bg-mobile.jpg');
+        background-attachment: scroll;
       }
+    }
     }
 
     .wrap{ min-height:100%; display:flex; flex-direction:column; align-items:center; gap:22px; padding:32px 18px 120px; }
@@ -58,8 +60,9 @@
     .hero-inner{ display:grid; grid-template-columns: 160px 1fr; gap:18px; padding:22px; align-items:center; }
     @media (min-width:740px){ .hero-inner{ grid-template-columns: 220px 1fr; gap:24px; padding:28px; } }
 
-    .photo{ width:160px; height:160px; border-radius:50%; overflow:hidden; border:3px solid rgba(255,255,255,0.12); box-shadow: 0 10px 30px rgba(0,0,0,.35);
-            background:#0b1220 center/cover no-repeat; justify-self:center; }
+    .photo{ width:160px; height:160px; border-radius:50%; overflow:hidden; border:3px solid rgba(255,255,255,0.12); box-shadow: 0 10px 30px rgba(0,0,0,.35); background:#0b1220; justify-self:center; }
+    .photo img{ width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+    @media (min-width:740px){ .photo{ width:220px; height:220px; } }
     @media (min-width:740px){ .photo{ width:220px; height:220px; } }
 
     .name{ font-family:var(--name-font); letter-spacing:0.5px; line-height:0.9; margin:0; font-size: clamp(42px, 8vw, 84px); }
@@ -80,16 +83,8 @@
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)); border:1px solid var(--border); border-radius:18px; text-decoration:none; color:var(--text);
       transition: transform .15s ease, border-color .15s ease; }
     .link-card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
-    .link-icon{ width:54px; height:54px; border-radius:16px; display:grid; place-items:center; overflow:hidden; background:rgba(255,255,255,0.06); }
-.link-icon img,
-.share-btn img {
-  width: 80%;
-  height: 80%;
-  object-fit: contain;
-  object-position: center center;
-  display: block;
-}
-
+    .link-icon{ width:54px; height:54px; border-radius:50%; display:grid; place-items:center; overflow:hidden; background:rgba(255,255,255,0.06); }
+    .link-icon img, 
     .link-text b{ display:block; font-size:16px; }
     .link-text small{ color:var(--muted); }
 
@@ -109,6 +104,7 @@
     .share-dock{ position:fixed; right:16px; bottom:16px; display:flex; gap:12px; z-index:20; }
     .share-btn{ width:54px; height:54px; border-radius:50%; border:1px solid var(--border); background:var(--card); display:grid; place-items:center; box-shadow:var(--shadow); cursor:pointer; transition:transform .15s ease, border-color .15s ease; overflow:hidden; }
     .share-btn:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
+    .share-btn img{ width:140%; height:140%; object-fit:contain; display:block; }
     .share-btn svg{ width:26px; height:26px; opacity:.95; }
 
     .toast{ position:fixed; left:50%; transform:translateX(-50%); bottom:88px; background:#0b1220; border:1px solid var(--border); padding:10px 14px; border-radius:12px; box-shadow:var(--shadow); display:none; }
@@ -126,7 +122,7 @@
 
     <header class="hero">
       <div class="hero-inner">
-        <div class="photo" id="photo"></div>
+        <div class="photo" id="photo"><img src="FOTO_CANDIDATO.jpg" alt="Jacopo Cellai"/></div>
         <div>
           <h1 class="name" id="name">JACOPO CELLAI</h1>
           <p class="desc" id="desc">
@@ -269,4 +265,3 @@
   </script>
 </body>
 </html>
-
