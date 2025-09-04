@@ -45,7 +45,6 @@
         background-attachment: scroll;
       }
     }
-    }
 
     .wrap{ min-height:100%; display:flex; flex-direction:column; align-items:center; gap:22px; padding:32px 18px 120px; }
     .update-time{ font-size:13px; color:var(--muted); margin-bottom:10px; text-align:center; }
@@ -84,7 +83,7 @@
       transition: transform .15s ease, border-color .15s ease; }
     .link-card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
     .link-icon{ width:54px; height:54px; border-radius:50%; display:grid; place-items:center; overflow:hidden; background:rgba(255,255,255,0.06); }
-    .link-icon img, 
+    .link-icon img{ width:80%; height:80%; object-fit:contain; object-position:center; display:block; }
     .link-text b{ display:block; font-size:16px; }
     .link-text small{ color:var(--muted); }
 
@@ -104,7 +103,7 @@
     .share-dock{ position:fixed; right:16px; bottom:16px; display:flex; gap:12px; z-index:20; }
     .share-btn{ width:54px; height:54px; border-radius:50%; border:1px solid var(--border); background:var(--card); display:grid; place-items:center; box-shadow:var(--shadow); cursor:pointer; transition:transform .15s ease, border-color .15s ease; overflow:hidden; }
     .share-btn:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
-    .share-btn img{ width:140%; height:140%; object-fit:contain; display:block; }
+    .share-btn img{ width:80%; height:80%; object-fit:contain; object-position:center; display:block; }
     .share-btn svg{ width:26px; height:26px; opacity:.95; }
 
     .toast{ position:fixed; left:50%; transform:translateX(-50%); bottom:88px; background:#0b1220; border:1px solid var(--border); padding:10px 14px; border-radius:12px; box-shadow:var(--shadow); display:none; }
@@ -143,11 +142,11 @@
         <div class="tile-body">
           <div class="links">
             <a class="link-card" id="igLink" href="https://www.instagram.com/jacopocellai?igsh=eWk4MDYwbzRvYW1u&utm_source=qr" target="_blank" rel="noopener">
-              <span class="link-icon"><img id="igIcon" alt="Instagram" src="INSTAGRAM_ICON.png"/></span>
+              <span class="link-icon"><img id="igIcon" alt="Instagram" src="https://cdn.simpleicons.org/instagram/FFFFFF"/></span>
               <span class="link-text"><b>Instagram</b><small>@jacopocellai</small></span>
             </a>
             <a class="link-card" id="fbLink" href="https://www.facebook.com/share/1FFXxqUwKt/?mibextid=wwXIfr" target="_blank" rel="noopener">
-              <span class="link-icon"><img id="fbIcon" alt="Facebook" src="FACEBOOK_ICON.png"/></span>
+              <span class="link-icon"><img id="fbIcon" alt="Facebook" src="https://cdn.simpleicons.org/facebook/FFFFFF"/></span>
               <span class="link-text"><b>Facebook</b><small>Pagina ufficiale</small></span>
             </a>
             <a class="link-card" id="ttLink" href="https://www.tiktok.com/@jacopo.cellai.fir?_t=ZN-8zQ5ZIvDjwk&_r=1" target="_blank" rel="noopener">
@@ -202,13 +201,13 @@
   <!-- Dock condivisione (4 cerchi) -->
   <div class="share-dock" aria-label="Condividi pagina">
     <button class="share-btn" id="shareWA" title="Condividi su WhatsApp" aria-label="WhatsApp">
-      <img alt="WhatsApp" src="WHATSAPP_ICON.png" />
+      <img alt="WhatsApp" src="https://cdn.simpleicons.org/whatsapp/FFFFFF" />
     </button>
     <button class="share-btn" id="shareIG" title="Copia link per Instagram" aria-label="Instagram">
-      <img alt="Instagram" src="INSTAGRAM_ICON.png" />
+      <img alt="Instagram" src="https://cdn.simpleicons.org/instagram/FFFFFF" />
     </button>
     <button class="share-btn" id="shareFB" title="Condividi su Facebook" aria-label="Facebook">
-      <img alt="Facebook" src="FACEBOOK_ICON.png" />
+      <img alt="Facebook" src="https://cdn.simpleicons.org/facebook/FFFFFF" />
     </button>
     <button class="share-btn" id="shareGeneric" title="Condividi" aria-label="Condividi">
       <!-- Aeroplanino di carta (SVG inline) -->
