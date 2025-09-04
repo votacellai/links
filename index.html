@@ -16,9 +16,8 @@
 
   <style>
     :root{
-      --bg-image: url('BACKGROUND_FROM_CANVA.jpg');
-      --accent: #ff453a;
-      --accent-2: #ffd166;
+      --accent: #007BFC;     /* colore richiesto per pulsanti/badge */
+      --accent-2: #007BFC;   /* stessa tinta per gradient */
       --text: #e6e9ef;
       --muted: #94a3b8;
       --card: rgba(15, 23, 42, 0.62);
@@ -28,7 +27,6 @@
       --radius: 22px;
       --name-font: 'Bebas Neue', system-ui, sans-serif;
       --body-font: 'Poppins', system-ui, sans-serif;
-      /* Campi modulo */
       --field-bg: rgba(255,255,255,0.06);
       --field-border: rgba(255,255,255,0.28);
       --field-border-focus: rgba(255,255,255,0.42);
@@ -37,46 +35,38 @@
     *{box-sizing:border-box}
     html,body{height:100%;}
     body{
-      @media (max-width: 768px) {
-  body {
-    background-image: linear-gradient(120deg, rgba(2,8,23,0.9), rgba(2,6,23,0.5)), url('bg-mobile.jpg');
-  }
-}
       margin:0; font-family:var(--body-font); color:var(--text); background:#0b1220;
       background-image: linear-gradient(120deg, rgba(2,8,23,0.9), rgba(2,6,23,0.5)), url('bg-desktop.jpg');
       background-size:cover; background-position:center; background-attachment: fixed;
     }
-
-    .wrap{
-      min-height:100%; display:flex; flex-direction:column; align-items:center; gap:22px; padding:32px 18px 120px;
+    @media (max-width: 768px){
+      body{
+        background-image: linear-gradient(120deg, rgba(2,8,23,0.9), rgba(2,6,23,0.5)), url('bg-mobile.jpg');
+      }
     }
 
+    .wrap{ min-height:100%; display:flex; flex-direction:column; align-items:center; gap:22px; padding:32px 18px 120px; }
     .update-time{ font-size:13px; color:var(--muted); margin-bottom:10px; text-align:center; }
 
-    .hero{
-      width:min(1100px, 92vw); position:relative; border:1px solid var(--border); border-radius: calc(var(--radius) + 6px);
-      overflow:hidden; box-shadow:var(--shadow);
-      background: radial-gradient(1200px 500px at 90% -50%, rgba(255, 69, 58, 0.25), transparent),
-                  radial-gradient(900px 600px at -10% 120%, rgba(255, 209, 102, 0.2), transparent),
-                  var(--glass);
-      backdrop-filter:saturate(140%) blur(8px);
-    }
+    .hero{ width:min(1100px, 92vw); position:relative; border:1px solid var(--border); border-radius: calc(var(--radius) + 6px);
+           overflow:hidden; box-shadow:var(--shadow);
+           background: radial-gradient(1200px 500px at 90% -50%, rgba(0, 123, 252, 0.25), transparent),
+                       radial-gradient(900px 600px at -10% 120%, rgba(0, 123, 252, 0.2), transparent),
+                       var(--glass);
+           backdrop-filter:saturate(140%) blur(8px); }
 
     .hero-inner{ display:grid; grid-template-columns: 160px 1fr; gap:18px; padding:22px; align-items:center; }
     @media (min-width:740px){ .hero-inner{ grid-template-columns: 220px 1fr; gap:24px; padding:28px; } }
 
-    .photo{
-      width:160px; height:160px; border-radius:50%; overflow:hidden; border:3px solid rgba(255,255,255,0.12); box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      background:#0b1220 center/cover no-repeat; justify-self:center;
-    }
+    .photo{ width:160px; height:160px; border-radius:50%; overflow:hidden; border:3px solid rgba(255,255,255,0.12); box-shadow: 0 10px 30px rgba(0,0,0,.35);
+            background:#0b1220 center/cover no-repeat; justify-self:center; }
     @media (min-width:740px){ .photo{ width:220px; height:220px; } }
 
     .name{ font-family:var(--name-font); letter-spacing:0.5px; line-height:0.9; margin:0; font-size: clamp(42px, 8vw, 84px); }
     .desc{ margin:10px 0 0; color:var(--text); opacity:0.95; font-weight:400; line-height:1.6; }
 
     .badges{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
-    .badge{ font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:#0b1220; background:linear-gradient(90deg, var(--accent), var(--accent-2));
-            border-radius:999px; padding:8px 12px; font-weight:700; }
+    .badge{ font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:#0b1220; background:linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius:999px; padding:8px 12px; font-weight:700; }
 
     .grid{ width:min(1100px, 92vw); display:grid; gap:18px; grid-template-columns: repeat(12, 1fr); }
     .tile{ grid-column: span 12; border:1px solid var(--border); border-radius:var(--radius); background:var(--card);
@@ -85,44 +75,38 @@
     .tile-title{ margin:0; font-weight:600; letter-spacing:.02em; font-size:15px; color:var(--muted); text-transform:uppercase; }
     .tile-body{ padding:16px; }
 
-    /* Link cards a larghezza piena (all'interno del riquadro) */
     .links{ display:grid; grid-template-columns: 1fr; gap:12px; }
     .link-card{ display:grid; grid-template-columns: 54px 1fr; align-items:center; gap:12px; padding:20px;
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)); border:1px solid var(--border); border-radius:18px; text-decoration:none; color:var(--text);
       transition: transform .15s ease, border-color .15s ease; }
     .link-card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
     .link-icon{ width:54px; height:54px; border-radius:16px; display:grid; place-items:center; overflow:hidden; background:rgba(255,255,255,0.06); }
-    .link-icon img{ width:100%; height:100%; object-fit:cover; }
+    .link-icon img{ width:140%; height:140%; object-fit:contain; display:block; }
     .link-text b{ display:block; font-size:16px; }
     .link-text small{ color:var(--muted); }
 
-    /* Pulsanti principali a piena larghezza */
     .btn{ display:block; width:100%; padding:20px; border-radius:14px; border:1px solid var(--border);
           color:var(--text); background:linear-gradient(90deg, var(--accent), var(--accent-2)); font-weight:700; text-decoration:none; text-align:center; }
 
-    /* Modulo contatti – campi più chiari e arrotondati */
     form{ display:grid; gap:12px; }
     .row{ display:grid; grid-template-columns: 1fr; gap:12px; }
     @media (min-width:600px){ .row{ grid-template-columns: 1fr 1fr; } }
     label small{ display:block; color:var(--muted); margin-bottom:6px; }
-    input, textarea{
-      width:100%; padding:14px 16px; border-radius:16px; border:1px solid var(--field-border); background:var(--field-bg); color:var(--text);
-      outline:none; transition:border-color .2s ease, background-color .2s ease; }
+    input, textarea{ width:100%; padding:14px 16px; border-radius:16px; border:1px solid var(--field-border); background:var(--field-bg); color:var(--text);
+                     outline:none; transition:border-color .2s ease, background-color .2s ease; }
     input::placeholder, textarea::placeholder{ color:#b9c2cf; opacity:0.8; }
     input:focus, textarea:focus{ border-color: var(--field-border-focus); background: rgba(255,255,255,0.08); }
     textarea{ min-height:150px; resize:vertical; }
 
-    /* Dock condivisione */
     .share-dock{ position:fixed; right:16px; bottom:16px; display:flex; gap:12px; z-index:20; }
     .share-btn{ width:54px; height:54px; border-radius:50%; border:1px solid var(--border); background:var(--card); display:grid; place-items:center; box-shadow:var(--shadow); cursor:pointer; transition:transform .15s ease, border-color .15s ease; overflow:hidden; }
     .share-btn:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
-    .share-btn img{ width:100%; height:100%; object-fit:cover; }
+    .share-btn img{ width:140%; height:140%; object-fit:contain; display:block; }
     .share-btn svg{ width:26px; height:26px; opacity:.95; }
 
     .toast{ position:fixed; left:50%; transform:translateX(-50%); bottom:88px; background:#0b1220; border:1px solid var(--border); padding:10px 14px; border-radius:12px; box-shadow:var(--shadow); display:none; }
     .toast.show{ display:block; }
 
-    /* Utility colonne */
     .span-6{ grid-column: span 12; }
     @media (min-width:740px){ .span-6{ grid-column: span 6; } }
     .span-4{ grid-column: span 12; }
@@ -150,22 +134,22 @@
     </header>
 
     <section class="grid">
-      <!-- Stessa larghezza degli altri: span-4 -->
+      <!-- Larghezze allineate: tutte span-4 su desktop -->
       <article class="tile span-4">
         <div class="tile-header"><h3 class="tile-title">Segui e condividi</h3></div>
         <div class="tile-body">
           <div class="links">
-            <a class="link-card" id="igLink" href="#" target="_blank" rel="noopener">
+            <a class="link-card" id="igLink" href="https://www.instagram.com/jacopocellai?igsh=eWk4MDYwbzRvYW1u&utm_source=qr" target="_blank" rel="noopener">
               <span class="link-icon"><img id="igIcon" alt="Instagram" src="INSTAGRAM_ICON.png"/></span>
-              <span class="link-text"><b>Instagram</b><small>@username</small></span>
+              <span class="link-text"><b>Instagram</b><small>@jacopocellai</small></span>
             </a>
-            <a class="link-card" id="fbLink" href="#" target="_blank" rel="noopener">
+            <a class="link-card" id="fbLink" href="https://www.facebook.com/share/1FFXxqUwKt/?mibextid=wwXIfr" target="_blank" rel="noopener">
               <span class="link-icon"><img id="fbIcon" alt="Facebook" src="FACEBOOK_ICON.png"/></span>
               <span class="link-text"><b>Facebook</b><small>Pagina ufficiale</small></span>
             </a>
-            <a class="link-card" id="ttLink" href="#" target="_blank" rel="noopener">
+            <a class="link-card" id="ttLink" href="https://www.tiktok.com/@jacopo.cellai.fir?_t=ZN-8zQ5ZIvDjwk&_r=1" target="_blank" rel="noopener">
               <span class="link-icon"><img id="ttIcon" alt="TikTok" src="TIKTOK_ICON.png"/></span>
-              <span class="link-text"><b>TikTok</b><small>@username</small></span>
+              <span class="link-text"><b>TikTok</b><small>@jacopo.cellai.fir</small></span>
             </a>
           </div>
         </div>
@@ -177,23 +161,11 @@
           <p>Email: <a href="mailto:jacopocellai@gmail.com">jacopocellai@gmail.com</a></p>
           <form id="contactForm" action="https://formspree.io/f/your-endpoint" method="POST">
             <div class="row">
-              <label>
-                <small>Nome</small>
-                <input name="nome" placeholder="Es. Mario" required />
-              </label>
-              <label>
-                <small>Cognome</small>
-                <input name="cognome" placeholder="Es. Rossi" required />
-              </label>
+              <label><small>Nome</small><input name="nome" placeholder="Es. Mario" required /></label>
+              <label><small>Cognome</small><input name="cognome" placeholder="Es. Rossi" required /></label>
             </div>
-            <label>
-              <small>Email</small>
-              <input name="email" type="email" placeholder="nome@email.it" required />
-            </label>
-            <label>
-              <small>Messaggio</small>
-              <textarea name="messaggio" placeholder="Scrivi qui..." required></textarea>
-            </label>
+            <label><small>Email</small><input name="email" type="email" placeholder="nome@email.it" required /></label>
+            <label><small>Messaggio</small><textarea name="messaggio" placeholder="Scrivi qui..." required></textarea></label>
             <button class="btn" type="submit">Invia</button>
           </form>
         </div>
@@ -246,6 +218,11 @@
 
   <div class="toast" id="toast">Link copiato negli appunti</div>
 
+  <!-- Immagine finale -->
+  <div style="margin:40px 0; text-align:center;">
+    <img src="bg-santino.png" alt="Santino" style="max-width:100%; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.35);" />
+  </div>
+
   <script>
     // Aggiorna automaticamente data/ora in alto (Europe/Rome)
     (function updateTimestamp(){
@@ -258,8 +235,7 @@
       el.textContent = `Ultimo aggiornamento: ${d} – ${t}`;
     })();
 
-    // Placeholder: popula alcuni campi dinamici se usi la sezione CONFIG in futuro
-    // Condivisione (identica alla versione precedente)
+    // Condivisione
     const toast = document.getElementById('toast');
     function showToast(msg){ toast.textContent = msg; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'), 2000); }
     const pageUrl = window.location.href;
@@ -286,3 +262,4 @@
   </script>
 </body>
 </html>
+
