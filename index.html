@@ -81,7 +81,15 @@
       transition: transform .15s ease, border-color .15s ease; }
     .link-card:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
     .link-icon{ width:54px; height:54px; border-radius:16px; display:grid; place-items:center; overflow:hidden; background:rgba(255,255,255,0.06); }
-    .link-icon img{ width:140%; height:140%; object-fit:contain; display:block; }
+.link-icon img,
+.share-btn img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+}
+
     .link-text b{ display:block; font-size:16px; }
     .link-text small{ color:var(--muted); }
 
@@ -101,7 +109,6 @@
     .share-dock{ position:fixed; right:16px; bottom:16px; display:flex; gap:12px; z-index:20; }
     .share-btn{ width:54px; height:54px; border-radius:50%; border:1px solid var(--border); background:var(--card); display:grid; place-items:center; box-shadow:var(--shadow); cursor:pointer; transition:transform .15s ease, border-color .15s ease; overflow:hidden; }
     .share-btn:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,0.22); }
-    .share-btn img{ width:140%; height:140%; object-fit:contain; display:block; }
     .share-btn svg{ width:26px; height:26px; opacity:.95; }
 
     .toast{ position:fixed; left:50%; transform:translateX(-50%); bottom:88px; background:#0b1220; border:1px solid var(--border); padding:10px 14px; border-radius:12px; box-shadow:var(--shadow); display:none; }
