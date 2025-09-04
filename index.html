@@ -37,8 +37,13 @@
     *{box-sizing:border-box}
     html,body{height:100%;}
     body{
+      @media (max-width: 768px) {
+  body {
+    background-image: linear-gradient(120deg, rgba(2,8,23,0.9), rgba(2,6,23,0.5)), url('bg-mobile.jpg');
+  }
+}
       margin:0; font-family:var(--body-font); color:var(--text); background:#0b1220;
-      background-image: linear-gradient(120deg, rgba(2,8,23,0.9), rgba(2,6,23,0.5)), var(--bg-image);
+      background-image: linear-gradient(120deg, rgba(2,8,23,0.9), rgba(2,6,23,0.5)), url('bg-desktop.jpg');
       background-size:cover; background-position:center; background-attachment: fixed;
     }
 
