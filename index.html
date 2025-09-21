@@ -162,15 +162,42 @@
         <div class="tile-body">
           <p>Email: <a href="mailto:jacopocellai@gmail.com">jacopocellai@gmail.com</a></p>
           <!-- TODO: sostituisci your-endpoint con il tuo ID Formspree reale -->
-          <form id="contactForm" action="https://formspree.io/f/your-endpoint" method="POST">
-            <div class="row">
-              <label><small>Nome</small><input name="nome" placeholder="Es. Mario" required /></label>
-              <label><small>Cognome</small><input name="cognome" placeholder="Es. Rossi" required /></label>
-            </div>
-            <label><small>Email</small><input name="email" type="email" placeholder="nome@email.it" required /></label>
-            <label><small>Messaggio</small><textarea name="messaggio" placeholder="Scrivi qui..." required></textarea></label>
-            <button class="btn" type="submit">Invia</button>
-          </form>
+         <form id="contactForm" action="https://formspree.io/f/mgvnwkpq" method="POST">
+  <!-- Hidden inputs -->
+  <input type="hidden" name="_subject" value="Nuovo contatto dal sito" />
+  <!-- Attenzione: _redirect serve solo se NON usi lo script fetch -->
+  <!-- <input type="hidden" name="_redirect" value="https://tuodominio.github.io/grazie.html" /> -->
+
+  <div class="row">
+    <label><small>Nome</small>
+      <input name="nome" placeholder="Es. Mario" required />
+    </label>
+    <label><small>Cognome</small>
+      <input name="cognome" placeholder="Es. Rossi" required />
+    </label>
+  </div>
+
+  <label><small>Email</small>
+    <input name="email" type="email" placeholder="nome@email.it" required />
+  </label>
+
+  <label><small>Messaggio</small>
+    <textarea name="messaggio" placeholder="Scrivi qui..." required></textarea>
+  </label>
+
+  <!-- Honeypot nascosto -->
+  <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
+
+  <!-- Consenso privacy -->
+  <label>
+    <input type="checkbox" name="consenso" required>
+    <small>Acconsento al trattamento dei dati per essere ricontattato.</small>
+  </label>
+
+  <!-- Unico bottone -->
+  <button class="btn" type="submit">Invia</button>
+</form>
+
         </div>
       </article>
 
@@ -276,5 +303,41 @@
       }
     });
   </script>
+  <script>
+  // INVIO FORM CON FETCH + TOAST
+  (function () {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const orig = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Invio...';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+
+        if (res.ok) {
+          form.reset();
+          // ri-usa il tuo toast già presente
+          (window.showToast ? showToast('Messaggio inviato! Ti risponderò al più presto.') : alert('Messaggio inviato!'));
+        } else {
+          (window.showToast ? showToast('Errore: riprova più tardi.') : alert('Errore: riprova più tardi.'));
+        }
+      } catch (err) {
+        (window.showToast ? showToast('Connessione assente o lenta.') : alert('Connessione assente o lenta.'));
+      } finally {
+        btn.disabled = false;
+        btn.textContent = orig;
+      }
+    });
+  })();
+</script>
 </body>
 </html>
